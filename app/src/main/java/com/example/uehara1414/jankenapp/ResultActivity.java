@@ -52,7 +52,7 @@ public class ResultActivity extends AppCompatActivity {
                 break;
         }
 
-        int comHand = (int)(Math.random() * 3);
+        int comHand = getHand();
         ImageView comHandImageView = (ImageView)findViewById(R.id.computer_hand);
 
         switch (comHand){
@@ -81,6 +81,7 @@ public class ResultActivity extends AppCompatActivity {
                 resultLabel.setText(R.string.result_lose);
                 break;
         }
+        saveData(my_hand, comHand);
     }
 
     public void onBackButtonTapped(View view){
@@ -89,6 +90,38 @@ public class ResultActivity extends AppCompatActivity {
 
     private int getResult(int myHand, int comHand){
         return (comHand - myHand + 3) % 3;
+    }
+
+    private int getHand(){
+        int hand = (int)(Math.random() * 3);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = pref.edit();
+
+        int gameCount = pref.getInt("GAME_COUNT", 0);
+        int winningStreakCount = pref.getInt("WINNING_STREAK_COUNT", 0);
+        int lastMyHand = pref.getInt("LAST_MY_HAND", 0);
+        int lastComHand = pref.getInt("LAST_COM_HAND", 0);
+        int lastGameResult = pref.getInt("LAST_GAME_RESULT", -1);
+        int beforeLastComHand = pref.getInt("BEFORE_LAST_COM_HAND", -1);
+        int gameResult = pref.getInt("GAME_RESULT", -1);
+
+        if (gameCount == 1){
+            if (gameResult == RESULT_LOSE){
+                while(hand == lastComHand){
+                    hand = (int)(Math.random() * 3);
+                }
+            } else if (gameResult == RESULT_WIN) {
+                hand = (lastMyHand - 1 + 3) % 3;
+            }
+        } else if(winningStreakCount > 0){
+            if (beforeLastComHand == lastComHand) {
+                while(hand == lastComHand) {
+                    hand = (int)(Math.random() * 3);
+                }
+            }
+        }
+
+        return hand;
     }
 
     private void resetData(){
