@@ -2,4 +2,7 @@
     <string name="app_name">JankenApp</string>
     <string name="ainote">じゃん、けん...</string>
     <string name="back">戻る</string>
+    <string name="result_win">あなたの勝ちです</string>
+    <string name="result_lose">お前の負けだ</string>
+    <string name="result_draw">あいこや</string>
 </resources>
