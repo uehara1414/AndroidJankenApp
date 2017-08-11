@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="0dp"
+        android:onClick="onJankenButtonTapped"
         app:layout_constraintLeft_toRightOf="@+id/choki"
         app:layout_constraintTop_toTopOf="@+id/choki"
         app:srcCompat="@drawable/pa" />
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="7dp"
         android:layout_marginTop="0dp"
+        android:onClick="onJankenButtonTapped"
         app:layout_constraintRight_toLeftOf="@+id/choki"
         app:layout_constraintTop_toTopOf="@+id/choki"
         app:srcCompat="@drawable/goo" />
@@ -34,6 +36,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="onJankenButtonTapped"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
